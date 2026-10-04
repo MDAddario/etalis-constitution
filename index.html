@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Etali's Compact</title>
+<title>Etali's Constitution</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +20,8 @@
     --hair: #3a2e22;
     --dino: #c1272d;
     --dino-dark: #74130f;
+    --permit: #6fbf73;
+    --ban: #e5534b;
   }
   *{ box-sizing: border-box; }
   html,body{
@@ -44,6 +46,9 @@
     letter-spacing: 0.01em;
     margin: 0;
   }
+  a{ color: var(--ember-bright); text-decoration: underline; text-decoration-color: rgba(255,138,61,0.4); text-underline-offset: 2px; }
+  a:hover{ text-decoration-color: var(--ember-bright); }
+
   /* ---------- HERO ---------- */
   .hero{
     text-align: center;
@@ -61,12 +66,6 @@
     line-height: 1.15;
   }
   .hero .accent{ color: var(--ember-bright); }
-  .hero p.subtitle{
-    margin-top: 10px;
-    color: var(--muted);
-    font-style: italic;
-    font-size: 1.05rem;
-  }
   /* ---------- DIVIDER ---------- */
   .divider{
     display:flex;
@@ -107,6 +106,7 @@
   }
   .section-head svg{ width:28px; height:28px; flex-shrink:0; }
   .section-head h2{ font-size: 1.35rem; }
+  .section{ margin-top: 44px; }
 
   /* ---------- RESTRICTIONS ---------- */
   .restrictions{
@@ -125,6 +125,7 @@
     border-radius: 3px;
     padding: 14px 18px;
   }
+  .restrictions li.top{ align-items:flex-start; }
   .restrictions svg{
     width: 20px; height:20px;
     margin-top: 3px;
@@ -144,34 +145,75 @@
     line-height: 1.5;
   }
 
-  /* ---------- PROCESS ---------- */
+  /* ---------- EXAMPLES ---------- */
+  .examples{
+    list-style:none;
+    margin: 12px 0 0;
+    padding: 0;
+    display:flex;
+    flex-direction:column;
+    gap: 8px;
+  }
+  .restrictions .examples li{
+    display:block;
+    background: transparent;
+    border: none;
+    border-left: 3px solid var(--hair);
+    border-radius: 0;
+    padding: 2px 0 2px 12px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .restrictions .examples li.permit{ border-left-color: var(--permit); }
+  .restrictions .examples li.ban{ border-left-color: var(--ban); }
+  .tag{
+    font-weight: 600;
+    margin-right: 4px;
+  }
+  .permit .tag{ color: var(--permit); }
+  .ban .tag{ color: var(--ban); }
+
+  /* ---------- PROCESS / TEXT ---------- */
   .process p{
     color: var(--text);
     font-size: 1.02rem;
     line-height: 1.7;
+    margin: 0;
   }
-  .process p + p{ margin-top: 12px; }
 
-  /* ---------- CHANGELOG ---------- */
-  table{
-    width:100%;
-    border-collapse: collapse;
-    font-size: 0.92rem;
+  /* ---------- BANLIST ---------- */
+  .banlist{
+    list-style:none;
+    margin: 14px 0 0;
+    padding: 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap: 10px;
   }
-  th, td{
-    text-align:left;
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--hair);
-  }
-  th{
+  .subsection{ margin-top: 28px; }
+  .subsection h3{
     font-family:'Cinzel', serif;
-    font-weight:600;
-    color: var(--ember-bright);
-    font-size: 0.82rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--ban);
+    margin: 0 0 8px;
   }
-  td{ color: var(--muted); }
-  td.change{ color: var(--text); }
-  tr:last-child td{ border-bottom:none; }
+  .banlist li{
+    background: rgba(229,83,75,0.10);
+    border: 1px solid var(--ban);
+    border-radius: 3px;
+    padding: 8px 14px;
+    font-family:'Cinzel', serif;
+    font-size: 0.95rem;
+    color: var(--ban);
+  }
+  .banlist .except{
+    font-family:'Spectral', serif;
+    font-size: 0.88rem;
+    color: var(--text);
+    margin-left: 4px;
+  }
 
   /* ---------- FOOTER ---------- */
   footer{
@@ -217,13 +259,12 @@
     preserveAspectRatio="xMidYMid slice" />
 </svg>
     </svg>
-    <h1>Etali's <span class="accent">Compact</span></h1>
-    <p class="subtitle">A charter for playing strong Magic together</p>
+    <h1>Etali's <span class="accent">Constitution</span></h1>
   </div>
 
   <!-- PRINCIPLE -->
   <div class="principle">
-    <p>The goal is to play and enjoy the <span class="flex">strongest decks</span> allowed by our restrictions. If a game is unpleasant, the restrictions are incrementally updated — never frozen.</p>
+    <p>The goal is to enjoy the <span class="flex">strongest decks</span> within our evolving restrictions.</p>
   </div>
 
   <div class="divider">
@@ -252,22 +293,58 @@
         <svg viewBox="0 0 20 20"><path d="M10 1 C11.5 5 14 6.5 14 10 C14 13.5 11.5 17 10 18 C8.5 17 6 13.5 6 10 C6 6.5 8.5 5 10 1 Z" fill="currentColor"/></svg>
         <span class="label">No 2 Card Infinites</span>
       </li>
-      <li>
+      <li class="top">
         <svg viewBox="0 0 20 20"><path d="M10 1 C11.5 5 14 6.5 14 10 C14 13.5 11.5 17 10 18 C8.5 17 6 13.5 6 10 C6 6.5 8.5 5 10 1 Z" fill="currentColor"/></svg>
         <div>
           <span class="label">No Free Interaction</span>
-          <span class="detail">If a player is <b>tapped out</b>, they cannot interact.</span>
+          <span class="detail">No surprises from tapped out players</span>
+          <ul class="examples">
+            <li class="permit"><span class="tag">Permitted (green):</span> Tapped out, <a href="https://scryfall.com/search?q=%21%22Omniscience%22" target="_blank" rel="noopener">Omniscience</a> on board → Cast <a href="https://scryfall.com/search?q=%21%22Swan+Song%22" target="_blank" rel="noopener">Swan Song</a></li>
+            <li class="permit"><span class="tag">Permitted (green):</span> Tapped out, <a href="https://scryfall.com/search?q=%21%22Treasonous+Ogre%22" target="_blank" rel="noopener">Treasonous Ogre</a> on board → Cast <a href="https://scryfall.com/search?q=%21%22Red+Elemental+Blast%22" target="_blank" rel="noopener">Red Elemental Blast</a></li>
+            <li class="ban"><span class="tag">Banned (red):</span> Tapped out, <a href="https://scryfall.com/search?q=%21%22Shimmer+Myr%22" target="_blank" rel="noopener">Shimmer Myr</a> on board → Flash <a href="https://scryfall.com/search?q=%21%22Lotus+Petal%22" target="_blank" rel="noopener">Lotus Petal</a> → Cast <a href="https://scryfall.com/search?q=%21%22Swan+Song%22" target="_blank" rel="noopener">Swan Song</a></li>
+            <li class="ban"><span class="tag">Banned (red):</span> Tapped out → Exile <a href="https://scryfall.com/search?q=%21%22Simian+Spirit+Guide%22" target="_blank" rel="noopener">Simian Spirit Guide</a> → Cast <a href="https://scryfall.com/search?q=%21%22Red+Elemental+Blast%22" target="_blank" rel="noopener">Red Elemental Blast</a></li>
+          </ul>
         </div>
       </li>
       <li>
         <svg viewBox="0 0 20 20"><path d="M10 1 C11.5 5 14 6.5 14 10 C14 13.5 11.5 17 10 18 C8.5 17 6 13.5 6 10 C6 6.5 8.5 5 10 1 Z" fill="currentColor"/></svg>
-        <span class="label">Budget Cap — $500</span>
+        <span class="label">Budget Cap — $500 Moxfield</span>
       </li>
       <li>
         <svg viewBox="0 0 20 20"><path d="M10 1 C11.5 5 14 6.5 14 10 C14 13.5 11.5 17 10 18 C8.5 17 6 13.5 6 10 C6 6.5 8.5 5 10 1 Z" fill="currentColor"/></svg>
         <span class="label">No Games After Supper</span>
       </li>
     </ul>
+  </div>
+
+  <!-- TRIBAL MODE -->
+  <div class="section process">
+    <div class="section-head">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 3 L27 9 V17 C27 23 22 28 16 29 C10 28 5 23 5 17 V9 Z" stroke="var(--ember)" stroke-width="2" fill="var(--surface)"/>
+        <path d="M16 9 L18 14 L23 14 L19 17.5 L20.5 22.5 L16 19.5 L11.5 22.5 L13 17.5 L9 14 L14 14 Z" fill="var(--ember-bright)"/>
+      </svg>
+      <h2>Tribal Mode</h2>
+    </div>
+    <p>The commander and all creatures in the deck must share the same creature type.</p>
+
+    <!-- BANLIST -->
+    <div class="subsection">
+      <h3>Banlist</h3>
+      <p>These creature types cannot be present in decks.</p>
+      <ul class="banlist">
+        <li>Humans</li>
+        <li>Rats</li>
+        <li>Angels</li>
+        <li>Goblins</li>
+        <li>Elves</li>
+        <li>Merfolk <span class="except">except Ian</span></li>
+        <li>Cats <span class="except">except Thomas</span></li>
+        <li>Dwarves <span class="except">except Pano</span></li>
+        <li>Pirates <span class="except">except Michael</span></li>
+        <li>Rabbits <span class="except">except Justin</span></li>
+      </ul>
+    </div>
   </div>
 
   <footer>
